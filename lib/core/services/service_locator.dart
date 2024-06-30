@@ -1,3 +1,5 @@
+import 'package:app/core/api/api_consumer.dart';
+import 'package:app/core/api/dio_consumer.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,6 +62,7 @@ Future<void> init() async {
   ///****************************************************
   ///! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl());
+  sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(dio: sl()));
 
   ///! External
   sl.registerLazySingleton<Dio>(() => Dio());
